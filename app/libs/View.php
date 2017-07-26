@@ -1,19 +1,23 @@
 <?php
 
-namespace App\libs;
-
 class View {
-	function __construct() {
-		$this->viewsPath = $GLOBALS['config']['path']['views'];
-	}
-	
-	public function render($name, $noInclude = false) {
-		if ($noInclude) {
-			include_once $this->viewsPath . $name . '.php';
+	public function render($template, $contentPage, $data = null) {
+		//extracting $this->data
+		if (!empty($this->data)) {
+			extract($this->data);
+		}
+		//extracting $data
+		if (is_array($data)) {
+			extract($data);
+		}
+		//include template
+		if ($template) {
+			return require_once Config::get('path/views') . '/templates/' . $template . '.php';	
 		} else {
-			include_once $this->viewsPath . 'template/header.php';
-			include_once $this->viewsPath . $name . '.php';
-			include_once $this->viewsPath . 'template/footer.php';
+			return require_once Config::get('path/views') . '/' . $contentPage . '.php';
 		}
 	}
-} 
+	public function data($key, $data) {
+		return $this->data[$key] = $data;
+	}
+}

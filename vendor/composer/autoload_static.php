@@ -6,25 +6,47 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit914e91747b03f9732214ad935fdb6a05
 {
-    public static $prefixLengthsPsr4 = array (
-        'A' => 
-        array (
-            'App\\' => 4,
-        ),
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/../..' . '/app',
     );
 
-    public static $prefixDirsPsr4 = array (
-        'App\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/app',
-        ),
+    public static $classMap = array (
+        'AdminController' => __DIR__ . '/../..' . '/app/controllers/AdminController.php',
+        'Alert' => __DIR__ . '/../..' . '/app/helpers/Alert.php',
+        'AuthController' => __DIR__ . '/../..' . '/app/controllers/AuthController.php',
+        'Bug' => __DIR__ . '/../..' . '/app/models/Bug.php',
+        'Comment' => __DIR__ . '/../..' . '/app/models/Comment.php',
+        'Config' => __DIR__ . '/../..' . '/app/helpers/Config.php',
+        'Connector' => __DIR__ . '/../..' . '/app/libs/Database/Connector.php',
+        'Controller' => __DIR__ . '/../..' . '/app/libs/Controller.php',
+        'Cookie' => __DIR__ . '/../..' . '/app/helpers/Cookie.php',
+        'Date' => __DIR__ . '/../..' . '/app/helpers/Date.php',
+        'Hash' => __DIR__ . '/../..' . '/app/helpers/Hash.php',
+        'Input' => __DIR__ . '/../..' . '/app/helpers/Input.php',
+        'Mail' => __DIR__ . '/../..' . '/app/helpers/Mail.php',
+        'Model' => __DIR__ . '/../..' . '/app/libs/Model.php',
+        'Post' => __DIR__ . '/../..' . '/app/models/Post.php',
+        'PostController' => __DIR__ . '/../..' . '/app/controllers/PostController.php',
+        'Profile' => __DIR__ . '/../..' . '/app/models/Profile.php',
+        'ProfileController' => __DIR__ . '/../..' . '/app/controllers/ProfileController.php',
+        'QueryBuilder' => __DIR__ . '/../..' . '/app/libs/Database/QueryBuilder.php',
+        'Redirect' => __DIR__ . '/../..' . '/app/helpers/Redirect.php',
+        'Router' => __DIR__ . '/../..' . '/app/libs/Router.php',
+        'Session' => __DIR__ . '/../..' . '/app/helpers/Session.php',
+        'Title' => __DIR__ . '/../..' . '/app/helpers/Title.php',
+        'Token' => __DIR__ . '/../..' . '/app/helpers/Token.php',
+        'Uploader' => __DIR__ . '/../..' . '/app/helpers/Uploader.php',
+        'Url' => __DIR__ . '/../..' . '/app/helpers/Url.php',
+        'User' => __DIR__ . '/../..' . '/app/models/User.php',
+        'Validator' => __DIR__ . '/../..' . '/app/helpers/Validator.php',
+        'View' => __DIR__ . '/../..' . '/app/libs/View.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit914e91747b03f9732214ad935fdb6a05::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit914e91747b03f9732214ad935fdb6a05::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit914e91747b03f9732214ad935fdb6a05::$fallbackDirsPsr4;
+            $loader->classMap = ComposerStaticInit914e91747b03f9732214ad935fdb6a05::$classMap;
 
         }, null, ClassLoader::class);
     }

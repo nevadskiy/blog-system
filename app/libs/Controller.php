@@ -1,9 +1,9 @@
 <?php
 
-namespace App\libs;
-
 class Controller {
-	function __construct() {
+	public function __construct() {
+		Session::start();
+		Session::saveURL();
 		$this->view = new View();
 	}
 }
