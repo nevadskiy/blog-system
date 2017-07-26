@@ -118,13 +118,20 @@ class PostController extends Controller {
 		return $this->view->render('main', 'post/single', [
 			'post' => $post, 
 			'comments' => $comments,
-			'isYourPost' => false
+			'isYourPost' => $isYourPost
 			]);
 	}
 
-	public function editAction($postId) {
+	public function editAction($postId = null) {
 		$postModel = new Post;
+		if (!$postId) {
+			Redirect::to('/');;
+		}
 		$post = $postModel->getPostById($postId);
+		if ($post->author_id != $this->userModel->data()->id) {
+			Redirect::to('/', 'You have no rights');;
+		}
+
 		$categories = $postModel->getCategoriesList();	
 
 		if (Input::exists('save')) {

@@ -9,7 +9,7 @@ class ProfileController extends Controller {
 		if (!$userModel->isLoggedIn() && !$id) {
 			Redirect::to('/', 'You should logged in', 'danger');
 		}
-		if (isset($userModel->data()->id) && $id == $userModel->data()->id) {
+		if ( ($userModel->isLoggedIn() && !$id) OR ($id == $userModel->data()->id)) {
 			$isYourProfile = true;
 			$id = Session::get(Config::get('session/userId'));
 			$profile = $userModel->data();
@@ -120,6 +120,6 @@ class ProfileController extends Controller {
 		return $this->view->render('main', 'user/profile', [
 			'posts' => $posts,
 			'layout' => Config::get('path/views/') . '/user/posts.php'
-		]);
+			]);
 	}
 }

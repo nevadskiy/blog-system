@@ -16,7 +16,7 @@ class Profile extends Model {
 		
 		if (isset($fields['avatar'])) {
 			$profile = $this->db->get('users_profiles', ['user_id' => $userId]);
-			if (!empty($profile->avatar) && file_exists($profile->avatar)) {
+			if ($profile->avatar != 'public/img/defava.jpg' && file_exists($profile->avatar)) {
 				unlink($profile->avatar);
 			}	
 		}

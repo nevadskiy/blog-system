@@ -17,7 +17,7 @@
             <?=$post->content; ?>
           </div>
           <hr>
-          <?php if (!$isYourPost): ?>
+          <?php if ($isYourPost): ?>
             <div class="post-footer-menu pull-right">
               <!-- Edit button -->
               <a href="/post/edit/<?=$post->id;?>" class="btn btn-info btn-sm">Edit</a>
