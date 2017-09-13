@@ -1,6 +1,7 @@
 <?php
 
 class AuthController extends Controller {
+
 	public function loginAction() {
 		$user = new User;
 		if ($user->isLoggedIn()) {

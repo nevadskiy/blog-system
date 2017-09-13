@@ -1,5 +1,13 @@
 <?php 
 
+//required tables!
+
+//users->id(autoincrement), username, email, password, salt
+//users_sessions->user_id, auth_token
+
+
+
+
 $GLOBALS['config'] = [
 	'path' => [
 		'root' => __DIR__,

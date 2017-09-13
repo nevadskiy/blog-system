@@ -40,7 +40,7 @@ class QueryBuilder {
 	private function query($sql, $values = []) {
 		//filtering keys from values array because sql view looks like WHERE `field` = ? AND ...
 		// die(var_dump($sql));
-		
+
 		if (isset($this->featQuery)) {
 			$sql .= ' ' . $this->featQuery;
 			$this->featQuery = null;
@@ -94,7 +94,7 @@ class QueryBuilder {
 		} else if ($act == 'UPDATE') {
 			$sql = "{$action}";
 		}
-		if (isset($where)) {
+		if (!empty($where)) {
 			$sql .= " WHERE {$where}";
 		}
 		if (isset($valuesArray)) {
@@ -145,22 +145,20 @@ class QueryBuilder {
 		return false;
 	}
 
-	public function update($table, $set, $parameters) {
-		if ($table && $set && $parameters) {
-			$setFields = [];
-			$setValues = [];
-			foreach ($set as $field => $value) {
-				$setFields[] = "{$field} = ?";
-				$setValues[] = $value;
-			}
-			$parameters = array_merge($setValues, $parameters);
+	public function update($table, $set, $parameters = []) {
+        $setFields = [];
+        $setValues = [];
+        foreach ($set as $field => $value) {
+            $setFields[] = "{$field} = ?";
+            $setValues[] = $value;
+        }
+        $parameters = array_merge($setValues, $parameters);
 
-			$set = implode(', ', $setFields);
-			
-			$action = "UPDATE {$table} SET {$set}";
-			
-			return $this->prequery($action, $table, $parameters);
-		}
+        $set = implode(', ', $setFields);
+
+        $action = "UPDATE {$table} SET {$set}";
+
+        return $this->prequery($action, $table, $parameters);
 	}
 
 	public function insert($table, $fields = []) {
